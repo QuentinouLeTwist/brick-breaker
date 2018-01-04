@@ -8,8 +8,8 @@ export default class BrickResourceLoader {
   }
 
   load(brickSizesConfig: Array<any>) {
-    brickSizesConfig.forEach((brickSizeConfig) => {
-      this.loader.loadImage(brickSizeConfig.imageRef, brickSizeConfig.imageSrc);
+    brickSizesConfig.forEach((config) => {
+      this.loader.loadImage(config.imageRef, config.imageSrc);
     });
   }
 }
