@@ -37,8 +37,8 @@ export default class Game extends Phaser.State {
   }
 
   private drawBricks() {
-    this.rowsOfBricks.forEach((raw: Array<any>) => {
-      raw.forEach((brick: Brick) => {
+    this.rowsOfBricks.forEach((row: Array<any>) => {
+      row.forEach((brick: Brick) => {
         this.game.add.sprite(brick.initialX, brick.initialY, brick.imageRef);
       });
     }, this);
