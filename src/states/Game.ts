@@ -8,7 +8,7 @@ import { Brick } from '../objects/brick/Brick';
 
 export default class Game extends Phaser.State {
 
-  private brickSizes: Array<{}> = [Config.XSMALL_BRICK, Config.SMALL_BRICK, Config.MID_BRICK, Config.BIG_BRICK];
+  private brickSizes: Array<{}> = [Config.XSMALL_BRICK, Config.SMALL_BRICK, Config.MEDIUM_BRICK, Config.BIG_BRICK];
 
   private rowsOfBricks: Array<Array<Brick>> = [];
 

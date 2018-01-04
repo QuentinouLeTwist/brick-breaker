@@ -1,7 +1,7 @@
 import {Brick} from './Brick';
-import {MID_BRICK} from '../../constants';
+import {MEDIUM_BRICK} from '../../constants';
 
-export default class MidBrick implements Brick {
+export default class MediumBrick implements Brick {
   imageRef: string;
   width: number;
   height: number;
@@ -9,9 +9,9 @@ export default class MidBrick implements Brick {
   initialY: number;
 
   constructor(x: number, y: number) {
-    this.imageRef = MID_BRICK.imageRef;
-    this.width = MID_BRICK.width;
-    this.height = MID_BRICK.height;
+    this.imageRef = MEDIUM_BRICK.imageRef;
+    this.width = MEDIUM_BRICK.width;
+    this.height = MEDIUM_BRICK.height;
     this.initialX = x;
     this.initialY = y;
   }

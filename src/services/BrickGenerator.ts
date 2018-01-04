@@ -4,7 +4,7 @@ import SmallBrick from '../objects/brick/SmallBrick';
 const brickSizes = {
   xsmall: Config.XSMALL_BRICK,
   small: Config.SMALL_BRICK,
-  mid: Config.MID_BRICK,
+  mid: Config.MEDIUM_BRICK,
   big: Config.BIG_BRICK
 };
 

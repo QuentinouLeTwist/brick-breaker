@@ -23,7 +23,7 @@ export const SMALL_BRICK = {
   imageRef: 'brick.small',
   imageSrc: 'assets/images/small_brick.png'
 };
-export const MID_BRICK = {
+export const MEDIUM_BRICK = {
   width: 150,
   height: 25,
   imageRef: 'brick.mid',
@@ -39,6 +39,6 @@ export const BIG_BRICK = {
 export default {
   GAME_CONFIG: PHASER_CONFIG,
   SMALL_BRICK,
-  MID_BRICK,
+  MID_BRICK: MEDIUM_BRICK,
   BIG_BRICK
 };
