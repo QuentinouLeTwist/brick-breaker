@@ -17,17 +17,24 @@ export default class BrickGenerator {
     // this.brickSizes = brickSizes;
   }
 
-  generateRowsOfBricks(numberOfRows: number, xStart: number, yStart: number) {
-    return [5, 35, 65].map((y) => this.createRawOfBricks(y));
+  generateRowsOfBricks(numberOfRows: number) {
+    return BrickGenerator.getRowsCoordsY(numberOfRows).map((y) => this.createRowOfBricks(y));
   }
 
-  private createRawOfBricks(y: number) {
+  private static getRowsCoordsY(numberOfRows: number) {
+    let coordsY = [];
+    for (let i = 0; i < numberOfRows; i++) {
+      coordsY.push(Config.GAME_CONFIG.paddingRowsTop + (i * (Config.GAME_CONFIG.rowHeight + Config.GAME_CONFIG.paddingRowsBottom)));
+    }
+    return coordsY;
+  }
+
+  private createRowOfBricks(y: number) {
     let rowWidth = 5;
     let bricks = [];
     while ((rowWidth + brickSizes.small.width + 5) < Config.PHASER_CONFIG.width) {
       bricks.push(this.createBrick(rowWidth, y));
       rowWidth += brickSizes.small.width + 5;
-      console.log(rowWidth);
     }
 
     return bricks;

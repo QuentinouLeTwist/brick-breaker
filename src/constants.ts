@@ -10,7 +10,9 @@ export const GAME_CONFIG = {
   numberRowsOfBricks: 3,
   firstRowX: 5,
   firstRowY: 5,
-  rowHeight: 25
+  rowHeight: 25,
+  paddingRowsTop: 5,
+  paddingRowsBottom: 5
 };
 export const XSMALL_BRICK = {
   width: 100,
