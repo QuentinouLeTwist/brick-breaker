@@ -7,13 +7,15 @@ export const PHASER_CONFIG = {
   forceSetTimeOut: false
 };
 export const GAME_CONFIG = {
-  numberRowsOfBricks: 3,
-  firstRowX: 5,
-  firstRowY: 5,
-  rowWidth: 600,
-  rowHeight: 25,
-  paddingRowTop: 5,
-  paddingRowBottom: 5
+  brick: {
+    numberRowsOfBricks: 3,
+    firstRowX: 5,
+    firstRowY: 5,
+    rowWidth: 600,
+    rowHeight: 25,
+    paddingRowTop: 5,
+    paddingRowBottom: 5
+  }
 };
 export const XSMALL_BRICK = {
   width: 100,
