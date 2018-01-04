@@ -18,25 +18,29 @@ export default class Game extends Phaser.State {
   }
 
   create() {
-    this.drawBricks();
+    this.generateBricks();
   }
 
   render() {
 
   }
 
-  private drawBricks() {
-    const brickGenerator = new BrickGenerator(this.game);
-    this.rawsOfBricks = brickGenerator.generateBricks(3, 5, 5);
-    this.rawsOfBricks.forEach((raw: Array<any>) => {
-      raw.forEach((brick: IBrick) => {
-        this.game.add.sprite(brick.initialX, brick.initialY, brick.image);
-      });
-    }, this);
-  }
-
   private loadBrickResources(phaserResourceLoader: PhaserResourceLoader) {
     const brickResourceLoader = new BrickResourceLoader(phaserResourceLoader);
     brickResourceLoader.load(this.brickSizes);
+  }
+
+  private generateBricks() {
+    const brickGenerator = new BrickGenerator(this.game);
+    this.rawsOfBricks = brickGenerator.generateBricks(3, 5, 5);
+    this.drawBricks();
+  }
+
+  private drawBricks() {
+    this.rawsOfBricks.forEach((raw: Array<any>) => {
+      raw.forEach((brick: IBrick) => {
+        this.game.add.sprite(brick.initialX, brick.initialY, brick.imageRef);
+      });
+    }, this);
   }
 }
