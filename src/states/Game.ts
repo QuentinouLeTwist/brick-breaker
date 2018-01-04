@@ -4,13 +4,13 @@ import * as Config from '../constants';
 import BrickGenerator from '../services/BrickGenerator';
 import BrickResourceLoader from '../services/BrickResourceLoader';
 import PhaserResourceLoader from '../services/loader/PhaserResourceLoader';
-import { IBrick } from '../objects/brick/IBrick';
+import { Brick } from '../objects/brick/Brick';
 
 export default class Game extends Phaser.State {
 
   private brickSizes: Array<{}> = [Config.XSMALL_BRICK, Config.SMALL_BRICK, Config.MID_BRICK, Config.BIG_BRICK];
 
-  private rowsOfBricks: Array<Array<IBrick>> = [];
+  private rowsOfBricks: Array<Array<Brick>> = [];
 
   preload() {
     const phaserResourceLoader = new PhaserResourceLoader(this.game);
@@ -38,7 +38,7 @@ export default class Game extends Phaser.State {
 
   private drawBricks() {
     this.rowsOfBricks.forEach((raw: Array<any>) => {
-      raw.forEach((brick: IBrick) => {
+      raw.forEach((brick: Brick) => {
         this.game.add.sprite(brick.initialX, brick.initialY, brick.imageRef);
       });
     }, this);

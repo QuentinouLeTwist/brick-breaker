@@ -1,7 +1,7 @@
-import {IBrick} from './IBrick';
+import {Brick} from './Brick';
 import {XSMALL_BRICK} from '../../constants';
 
-export default class XSmallBrick implements IBrick {
+export default class XSmallBrick implements Brick {
   imageRef: string;
   width: number;
   height: number;

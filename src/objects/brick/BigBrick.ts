@@ -1,7 +1,7 @@
-import {IBrick} from './IBrick';
+import {Brick} from './Brick';
 import {BIG_BRICK} from '../../constants';
 
-export default class BigBrick implements IBrick {
+export default class BigBrick implements Brick {
   imageRef: string;
   width: number;
   height: number;

@@ -1,7 +1,7 @@
-import {IBrick} from './IBrick';
+import {Brick} from './Brick';
 import {MID_BRICK} from '../../constants';
 
-export default class MidBrick implements IBrick {
+export default class MidBrick implements Brick {
   imageRef: string;
   width: number;
   height: number;
