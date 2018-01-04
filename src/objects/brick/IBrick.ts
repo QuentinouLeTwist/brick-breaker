@@ -1,5 +1,5 @@
 export interface IBrick {
-  image: string;
+  imageRef: string;
   width: number;
   height: number;
   initialX: number;
