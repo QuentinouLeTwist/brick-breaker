@@ -8,9 +8,9 @@ import { IBrick } from '../objects/brick/IBrick';
 
 export default class Game extends Phaser.State {
 
-  private brickSizes: Array<any> = [Config.SMALL_BRICK, Config.SMALL_BRICK, Config.MID_BRICK, Config.BIG_BRICK];
+  private brickSizes: Array<{}> = [Config.XSMALL_BRICK, Config.SMALL_BRICK, Config.MID_BRICK, Config.BIG_BRICK];
 
-  private rawsOfBricks: Array<Array<IBrick>> = [];
+  private rowsOfBricks: Array<Array<IBrick>> = [];
 
   preload() {
     const phaserResourceLoader = new PhaserResourceLoader(this.game);
@@ -32,12 +32,12 @@ export default class Game extends Phaser.State {
 
   private generateBricks() {
     const brickGenerator = new BrickGenerator(this.game);
-    this.rawsOfBricks = brickGenerator.generateBricks(3, 5, 5);
+    this.rowsOfBricks = brickGenerator.generateRowsOfBricks(Config.GAME_CONFIG.numberRawsOfBricks, Config.GAME_CONFIG.firstRawX, Config.GAME_CONFIG.firstRawY);
     this.drawBricks();
   }
 
   private drawBricks() {
-    this.rawsOfBricks.forEach((raw: Array<any>) => {
+    this.rowsOfBricks.forEach((raw: Array<any>) => {
       raw.forEach((brick: IBrick) => {
         this.game.add.sprite(brick.initialX, brick.initialY, brick.imageRef);
       });

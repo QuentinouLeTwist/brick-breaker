@@ -6,7 +6,7 @@ require('phaser');
 
 import 'styles/style.styl';
 import Game from './states/Game';
-import { GAME_CONFIG } from './constants';
+import { PHASER_CONFIG } from './constants';
 
 
 export default class App extends Phaser.Game {
@@ -21,6 +21,6 @@ export default class App extends Phaser.Game {
 
 if (!module.parent) {
   window.onload = () => {
-    new App(GAME_CONFIG);
+    new App(PHASER_CONFIG);
   };
 }

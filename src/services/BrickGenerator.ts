@@ -17,24 +17,24 @@ export default class BrickGenerator {
     // this.brickSizes = brickSizes;
   }
 
-  generateBricks(numberOfRaws: number, xStart: number, yStart: number) {
-    let rawsOfBricks = [];
+  generateRowsOfBricks(numberOfRaws: number, xStart: number, yStart: number) {
+    let rowsOfBricks = [];
     const coordsY = [5, 35, 65];
     for (let y = 0; y < numberOfRaws; y++) {
-      rawsOfBricks.push(this.createRawOfBricks(coordsY[y]));
+      rowsOfBricks.push(this.createRawOfBricks(coordsY[y]));
     }
-    return rawsOfBricks;
+    return rowsOfBricks;
   }
 
   // private generateRaws();
 
   private createRawOfBricks(y: number) {
-    let rawWidth = 5;
+    let rowWidth = 5;
     let bricks = [];
-    while ((rawWidth + brickSizes.small.width + 5) < Config.GAME_CONFIG.width) {
-      bricks.push(this.createBrick(rawWidth, y));
-      rawWidth += brickSizes.small.width + 5;
-      console.log(rawWidth);
+    while ((rowWidth + brickSizes.small.width + 5) < Config.PHASER_CONFIG.width) {
+      bricks.push(this.createBrick(rowWidth, y));
+      rowWidth += brickSizes.small.width + 5;
+      console.log(rowWidth);
     }
 
     return bricks;

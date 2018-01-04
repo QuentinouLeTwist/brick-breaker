@@ -1,10 +1,15 @@
-export const GAME_CONFIG = {
+export const PHASER_CONFIG = {
   width:           600,
   height:          400,
   renderer:        Phaser.AUTO,
   parent:          '',
   resolution:      1,
   forceSetTimeOut: false
+};
+export const GAME_CONFIG = {
+  numberRawsOfBricks: 3,
+  firstRawX: 5,
+  firstRawY: 5
 };
 export const XSMALL_BRICK = {
   width: 100,
@@ -32,7 +37,7 @@ export const BIG_BRICK = {
 };
 
 export default {
-  GAME_CONFIG,
+  GAME_CONFIG: PHASER_CONFIG,
   SMALL_BRICK,
   MID_BRICK,
   BIG_BRICK
