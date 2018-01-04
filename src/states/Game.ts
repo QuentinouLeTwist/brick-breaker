@@ -31,8 +31,9 @@ export default class Game extends Phaser.State {
   }
 
   private generateBricks() {
-    const brickGenerator = new BrickGenerator(this.game);
-    this.rowsOfBricks = brickGenerator.generateRowsOfBricks(Config.GAME_CONFIG.numberRowsOfBricks, Config.GAME_CONFIG.firstRowX, Config.GAME_CONFIG.firstRowY);
+    const gameConfig = Config.GAME_CONFIG;
+    const brickGenerator = new BrickGenerator(this.game, gameConfig.rowWidth, gameConfig.rowHeight, gameConfig.paddingRowTop, gameConfig.paddingRowBottom);
+    this.rowsOfBricks = brickGenerator.generateRowsOfBricks(Config.GAME_CONFIG.numberRowsOfBricks);
     this.drawBricks();
   }
 

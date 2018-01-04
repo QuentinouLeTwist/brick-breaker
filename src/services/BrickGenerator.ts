@@ -9,32 +9,44 @@ const brickSizes = {
 };
 
 export default class BrickGenerator {
-  // private brickSizes: Array<any>;
   private game: Phaser.Game;
+  private rowWidth: number;
+  private rowHeight: number;
+  private paddingRowTop: number;
+  private paddingRowBottom: number;
 
-  constructor(game: Phaser.Game) {
+  constructor(
+      game: Phaser.Game,
+      rowWidth: number,
+      rowHeight: number,
+      paddingRowsTop: number,
+      paddingRowsBottom: number
+  ) {
     this.game = game;
-    // this.brickSizes = brickSizes;
+    this.rowWidth = rowWidth;
+    this.rowHeight = rowHeight;
+    this.paddingRowTop = paddingRowsTop;
+    this.paddingRowBottom = paddingRowsBottom;
   }
 
   generateRowsOfBricks(numberOfRows: number) {
-    return BrickGenerator.getRowsCoordsY(numberOfRows).map((y) => this.createRowOfBricks(y));
+    return this.getRowsCoordsY(numberOfRows).map((y) => this.createRowOfBricks(y));
   }
 
-  private static getRowsCoordsY(numberOfRows: number) {
+  private getRowsCoordsY(numberOfRows: number) {
     let coordsY = [];
     for (let i = 0; i < numberOfRows; i++) {
-      coordsY.push(Config.GAME_CONFIG.paddingRowsTop + (i * (Config.GAME_CONFIG.rowHeight + Config.GAME_CONFIG.paddingRowsBottom)));
+      coordsY.push(this.paddingRowTop + (i * (this.rowHeight + this.paddingRowBottom)));
     }
     return coordsY;
   }
 
   private createRowOfBricks(y: number) {
-    let rowWidth = 5;
+    let brickWidth = 5;
     let bricks = [];
-    while ((rowWidth + brickSizes.small.width + 5) < Config.PHASER_CONFIG.width) {
-      bricks.push(this.createBrick(rowWidth, y));
-      rowWidth += brickSizes.small.width + 5;
+    while ((brickWidth + brickSizes.small.width + 5) < this.rowWidth) {
+      bricks.push(this.createBrick(brickWidth, y));
+      brickWidth += brickSizes.small.width + 5;
     }
 
     return bricks;
