@@ -1,3 +1,6 @@
+// @todo use a BrickGenerationConfig service to clean up
+// @todo create bricks randomly in the row width defined
+
 import * as Config from '../constants';
 import SmallBrick from '../objects/brick/SmallBrick';
 
