@@ -17,16 +17,9 @@ export default class BrickGenerator {
     // this.brickSizes = brickSizes;
   }
 
-  generateRowsOfBricks(numberOfRaws: number, xStart: number, yStart: number) {
-    let rowsOfBricks = [];
-    const coordsY = [5, 35, 65];
-    for (let y = 0; y < numberOfRaws; y++) {
-      rowsOfBricks.push(this.createRawOfBricks(coordsY[y]));
-    }
-    return rowsOfBricks;
+  generateRowsOfBricks(numberOfRows: number, xStart: number, yStart: number) {
+    return [5, 35, 65].map((y) => this.createRawOfBricks(y));
   }
-
-  // private generateRaws();
 
   private createRawOfBricks(y: number) {
     let rowWidth = 5;
