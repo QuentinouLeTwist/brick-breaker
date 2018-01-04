@@ -86,7 +86,7 @@ module.exports = {
       VERSION:        JSON.stringify(p.version)
     }),
 
-    new CopyWebpackPlugin([ { from: '/assets', to: 'assets' } ]),
+    new CopyWebpackPlugin([ { from: 'assets/', to: 'assets' } ]),
 
     /** JavaScript */
     onlyProd(() => new webpack.optimize.UglifyJsPlugin({
@@ -134,7 +134,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 8080,
+    port: 3000,
     inline: true,
     watchOptions: {
       aggregateTimeout: 300,

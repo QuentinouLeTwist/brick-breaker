@@ -44,7 +44,7 @@
     "typescript": "2.1.6",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.1",
-    "copy-webpack-plugin": "webpack-contrib/copy-webpack-plugin"
+    "copy-webpack-plugin": ">4.0.0"
   },
   "repository": {
     "type": "git",
