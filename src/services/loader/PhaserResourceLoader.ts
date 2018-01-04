@@ -1,6 +1,6 @@
-import {IResourceLoader} from './IResourceLoader';
+import {ResourceLoader} from './ResourceLoader';
 
-export default class PhaserResourceLoader implements IResourceLoader {
+export default class PhaserResourceLoader implements ResourceLoader {
   private game: Phaser.Game;
 
   constructor(game: Phaser.Game) {

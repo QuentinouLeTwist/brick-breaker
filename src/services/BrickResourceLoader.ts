@@ -1,9 +1,9 @@
-import {IResourceLoader} from './loader/IResourceLoader';
+import {ResourceLoader} from './loader/ResourceLoader';
 
 export default class BrickResourceLoader {
   private loader;
 
-  constructor(loader: IResourceLoader) {
+  constructor(loader: ResourceLoader) {
     this.loader = loader;
   }
 
