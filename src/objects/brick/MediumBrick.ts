@@ -1,5 +1,5 @@
 import {Brick} from './Brick';
-import {MEDIUM_BRICK} from '../../constants';
+import {MEDIUM_BRICK} from '../../config/bricks_config';
 
 export default class MediumBrick implements Brick {
   imageRef: string;

@@ -8,8 +8,6 @@ import { Brick } from '../objects/brick/Brick';
 
 export default class Game extends Phaser.State {
 
-  private brickSizes: Array<{}> = [Config.XSMALL_BRICK, Config.SMALL_BRICK, Config.MEDIUM_BRICK, Config.BIG_BRICK];
-
   private rowsOfBricks: Array<Array<Brick>> = [];
 
   preload() {
@@ -27,7 +25,7 @@ export default class Game extends Phaser.State {
 
   private loadBrickResources(phaserResourceLoader: PhaserResourceLoader) {
     const brickResourceLoader = new BrickResourceLoader(phaserResourceLoader);
-    brickResourceLoader.load(this.brickSizes);
+    brickResourceLoader.load(Config.GAME_CONFIG.brick.sizes);
   }
 
   private generateBricks() {

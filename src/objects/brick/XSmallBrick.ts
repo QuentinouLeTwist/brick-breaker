@@ -1,5 +1,5 @@
 import {Brick} from './Brick';
-import {XSMALL_BRICK} from '../../constants';
+import {XSMALL_BRICK} from '../../config/bricks_config';
 
 export default class XSmallBrick implements Brick {
   imageRef: string;

@@ -1,15 +1,17 @@
 // @todo use a BrickGenerationConfig service to clean up
 // @todo create bricks randomly in the row width defined
 
-import * as Config from '../constants';
+import * as Config from '../config/bricks_config';
 import SmallBrick from '../objects/brick/SmallBrick';
 
-const brickSizes = {
-  xsmall: Config.XSMALL_BRICK,
-  small: Config.SMALL_BRICK,
-  mid: Config.MEDIUM_BRICK,
-  big: Config.BIG_BRICK
-};
+const commonConfig = Config.BRICK_COMMON_CONFIG;
+
+enum BrickSizes {
+  xsmall,
+  small,
+  medium,
+  big
+}
 
 export default class BrickGenerator {
   private game: Phaser.Game;
@@ -47,9 +49,10 @@ export default class BrickGenerator {
   private createRowOfBricks(y: number) {
     let brickWidth = 5;
     let bricks = [];
-    while ((brickWidth + brickSizes.small.width + 5) < this.rowWidth) {
+    const brickConfig = commonConfig.sizes[BrickSizes.small];
+    while ((brickWidth + brickConfig.width + 5) < this.rowWidth) {
       bricks.push(this.createBrick(brickWidth, y));
-      brickWidth += brickSizes.small.width + 5;
+      brickWidth += brickConfig.width + 5;
     }
 
     return bricks;

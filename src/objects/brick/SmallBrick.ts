@@ -1,5 +1,5 @@
 import {Brick} from './Brick';
-import {SMALL_BRICK} from '../../constants';
+import {SMALL_BRICK} from '../../config/bricks_config';
 
 export default class SmallBrick implements Brick {
   imageRef: string;

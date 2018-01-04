@@ -8,7 +8,6 @@ import 'styles/style.styl';
 import Game from './states/Game';
 import { PHASER_CONFIG } from './constants';
 
-
 export default class App extends Phaser.Game {
   constructor(config: Phaser.IGameConfig) {
     super(config);
