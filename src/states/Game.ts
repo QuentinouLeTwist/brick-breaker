@@ -1,36 +1,42 @@
 require('phaser');
 
-import { GAME_CONFIG, SMALL_RECTANGLE } from '../constants';
+import * as Config from '../constants';
+import BrickGenerator from '../services/BrickGenerator';
+import BrickResourceLoader from '../services/BrickResourceLoader';
+import PhaserResourceLoader from '../services/loader/PhaserResourceLoader';
+import { IBrick } from '../objects/brick/IBrick';
 
 export default class Game extends Phaser.State {
-  private lines: Array<{}> = [];
+
+  private brickSizes: Array<any> = [Config.SMALL_BRICK, Config.SMALL_BRICK, Config.MID_BRICK, Config.BIG_BRICK];
+
+  private rawsOfBricks: Array<Array<IBrick>> = [];
 
   preload() {
-    this.game.load.image('small_rectangle', 'assets/images/small_rectangle.png');
-    this.game.load.image('mid_rectangle', 'assets/images/mid_rectangle.png');
-    this.game.load.image('big_rectangle', 'assets/images/big_rectangle.png');
+    const phaserResourceLoader = new PhaserResourceLoader(this.game);
+    this.loadBrickResources(phaserResourceLoader);
   }
 
   create() {
-    const line = this.generateLineOfRectangles();
-    this.lines.push(line);
+    this.drawBricks();
   }
 
   render() {
 
   }
 
-  /**
-   * @returns {{lineRectangles: Array}}
-   */
-  private generateLineOfRectangles() {
-    let lineWidth = 0;
-    let line = [];
-    while (lineWidth + 5 < GAME_CONFIG.width) {
-      line.push(this.game.add.sprite(lineWidth, 5, 'small_rectangle'));
-      lineWidth += SMALL_RECTANGLE.width;
-    }
+  private drawBricks() {
+    const brickGenerator = new BrickGenerator(this.game);
+    this.rawsOfBricks = brickGenerator.generateBricks(3, 5, 5);
+    this.rawsOfBricks.forEach((raw: Array<any>) => {
+      raw.forEach((brick: IBrick) => {
+        this.game.add.sprite(brick.initialX, brick.initialY, brick.image);
+      });
+    }, this);
+  }
 
-    return line;
+  private loadBrickResources(phaserResourceLoader: PhaserResourceLoader) {
+    const brickResourceLoader = new BrickResourceLoader(phaserResourceLoader);
+    brickResourceLoader.load(this.brickSizes);
   }
 }
