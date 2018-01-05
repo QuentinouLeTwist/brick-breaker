@@ -18,6 +18,9 @@ export default class Game extends Phaser.State {
 
   create() {
     this.generateBricks();
+    const ball = this.game.add.graphics(0, 0);
+    ball.beginFill(0xFF0000, 1);
+    ball.drawCircle(300, 300, 20);
     this.game.add.sprite(200, 360, 'breakerBar');
   }
 
