@@ -13,10 +13,12 @@ export default class Game extends Phaser.State {
   preload() {
     const phaserResourceLoader = new PhaserResourceLoader(this.game);
     this.loadBrickResources(phaserResourceLoader);
+    this.game.load.image('breakerBar', 'assets/images/breakerBar.png');
   }
 
   create() {
     this.generateBricks();
+    this.game.add.sprite(200, 360, 'breakerBar');
   }
 
   render() {
@@ -29,9 +31,9 @@ export default class Game extends Phaser.State {
   }
 
   private generateBricks() {
-    const gameConfig = Config.GAME_CONFIG.brick;
-    const brickGenerator = new BrickGenerator(this.game, gameConfig.rowWidth, gameConfig.rowHeight, gameConfig.paddingRowTop, gameConfig.paddingRowBottom);
-    this.rowsOfBricks = brickGenerator.generateRowsOfBricks(gameConfig.numberRowsOfBricks);
+    const brickGenerator = new BrickGenerator(this.game);
+    this.rowsOfBricks = brickGenerator.generateRowsOfBricks(Config.GAME_CONFIG.brick.numberRowsOfBricks);
+    console.log('rows', this.rowsOfBricks);
     this.drawBricks();
   }
 
