@@ -1,5 +1,4 @@
-// @todo use a BrickGenerationConfig service to clean up
-// @todo create bricks randomly in the row width defined
+// @todo use BrickFactory service for creating brick
 
 import * as Config from '../config/bricks_config';
 import XXSmallBrick from '../objects/brick/XXSmallBrick';
@@ -63,7 +62,6 @@ export default class BrickGenerator {
       counter++;
     }
 
-    console.log(bricks);
     return bricks;
   }
 
