@@ -1,4 +1,4 @@
-import {ResourceLoader} from './loader/ResourceLoader';
+import {ResourceLoader} from '../loader/ResourceLoader';
 
 export default class BrickResourceLoader {
   private loader;
