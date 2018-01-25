@@ -1,4 +1,4 @@
-
+/*
 import XXSmallBrick from '../../objects/brick/XXSmallBrick';
 import XSmallBrick from '../../objects/brick/XSmallBrick';
 import SmallBrick from '../../objects/brick/SmallBrick';
@@ -34,3 +34,4 @@ export default class BrickFactory {
     }
   }
 }
+*/

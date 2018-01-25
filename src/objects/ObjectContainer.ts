@@ -18,7 +18,7 @@ export default class ObjectContainer {
   }
 
   createBall(x: number, y: number, context?: Phaser.State) {
-    this.ball = this.objectFactory.createObject('ball', context);
+    this.ball = this.objectFactory.createBall(context);
     this.ball.create(x, y);
   }
 

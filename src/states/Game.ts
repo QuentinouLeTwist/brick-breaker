@@ -1,4 +1,5 @@
 // @todo optimize bricks creation (as it is done for other game objects)
+// @todo instead of having a switch into object factory, maybe it would make sense to pass a "config object" to ObjectContainer that will instantiate the game objects based on that
 
 require('phaser');
 
@@ -19,14 +20,12 @@ export default class Game extends Phaser.State {
   private numberOfBricks: number = 0;
 
   private bricksGroups: Array<Phaser.Group> = [];
-  private brickDrawer: BrickDrawer;
 
   private objectContainer: GameObjectContainer;
   private cursors: Phaser.CursorKeys;
 
   constructor() {
     super();
-    this.brickDrawer = new BrickDrawer();
     this.bannerCreator = new BannerCreator(this);
     this.objectContainer = new GameObjectContainer(new ObjectFactory(this));
   }
