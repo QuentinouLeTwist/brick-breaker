@@ -1,15 +1,21 @@
 import {ResourceLoader} from './ResourceLoader';
 
 export default class PhaserResourceLoader implements ResourceLoader {
-  private game: Phaser.Game;
+  private context: Phaser.State;
 
-  constructor(game: Phaser.Game) {
-    this.game = game;
+  constructor(context: Phaser.State) {
+    this.context = context;
   }
 
   load(asset: any) {}
 
+  loadAssets(assets: Array<{}>) {
+    assets.forEach((asset: any) => {
+      this.loadImage(asset.id, asset.path);
+    });
+  }
+
   loadImage(reference: string, path: string) {
-    this.game.load.image(reference, path);
+    this.context.game.load.image(reference, path);
   }
 }

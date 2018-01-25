@@ -1,4 +1,4 @@
-export interface Brick {
+export interface BrickInterface {
   imageRef: string;
   width: number;
   height: number;

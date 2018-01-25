@@ -1,4 +1,4 @@
-import {BRICK_COMMON_CONFIG} from './config/bricks_config';
+import {BRICK_COMMON_CONFIG} from './config/bricks';
 
 export const PHASER_CONFIG = {
   width:           600,

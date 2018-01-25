@@ -1,7 +1,7 @@
-import {Brick} from './Brick';
-import {XXSMALL_BRICK} from '../../config/bricks_config';
+import {BrickInterface} from './BrickInterface';
+import {XXSMALL_BRICK} from '../../config/bricks';
 
-export default class XXSmallBrick implements Brick {
+export default class XXSmallBrick implements BrickInterface {
   imageRef: string;
   width: number;
   height: number;

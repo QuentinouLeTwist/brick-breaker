@@ -1,19 +1,16 @@
 // @todo use BrickFactory service for creating brick
 
-import * as Config from '../../config/bricks_config';
-import BrickObjectFactory from './BrickObjectFactory';
+import * as Config from '../../config/bricks';
 
 const commonConfig = Config.BRICK_COMMON_CONFIG;
 
 export default class BrickGenerator {
-  private game: Phaser.Game;
   private rowWidth: number;
   private rowHeight: number;
   private paddingRowTop: number;
   private paddingRowBottom: number;
 
-  constructor(game: Phaser.Game) {
-    this.game = game;
+  constructor() {
     this.rowWidth = commonConfig.rowWidth;
     this.rowHeight = commonConfig.rowHeight;
     this.paddingRowTop = commonConfig.paddingRowTop;
@@ -33,16 +30,19 @@ export default class BrickGenerator {
   }
 
   private createRowOfBricks(y: number) {
-    let totalBricksWidth = 5;
-    let brickPadding = 5;
+    let totalBricksWidth = 25;
+    const brickPadding = 10;
     let bricks = [];
     let counter = 0;
 
     while (totalBricksWidth < this.rowWidth && counter < 30) {
-      const randomBrickSize = this.getBrickSizeRandomly();
-      const brickConfig = commonConfig.sizes[randomBrickSize];
+      // const randomBrickSize = this.getBrickSizeRandomly();
+      const brickConfig = commonConfig.sizes[3];
       if (totalBricksWidth + brickConfig.width < this.rowWidth) {
-        bricks.push(BrickObjectFactory.createBrick(randomBrickSize, totalBricksWidth, y));
+        bricks.push({
+          x: totalBricksWidth,
+          y: y
+        });
         totalBricksWidth += brickConfig.width + brickPadding;
       }
       counter++;
@@ -51,8 +51,9 @@ export default class BrickGenerator {
     return bricks;
   }
 
-
+  /*
   private getBrickSizeRandomly() {
     return Phaser.Math.between(0, commonConfig.sizes.length - 1);
   }
+  */
 }

@@ -40,7 +40,7 @@ export const BRICK_COMMON_CONFIG = {
   firstRowY: 5,
   rowWidth: 600,
   rowHeight: 25,
-  paddingRowTop: 5,
+  paddingRowTop: 25,
   paddingRowBottom: 5,
   sizes: [XXSMALL_BRICK, XSMALL_BRICK, SMALL_BRICK, MEDIUM_BRICK, LARGE_BRICK, XLARGE_BRICK]
 };

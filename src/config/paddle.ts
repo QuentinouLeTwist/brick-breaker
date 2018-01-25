@@ -1,8 +1,8 @@
 export const PADDLE_CONFIG = {
   paddleWidth: 200,
   paddleSegmentWidth: 25,
-  paddleSegmentAngle: 15,
-  paddleSegmentsMax: 8,
+  paddleSegmentAngle: 5,
+  paddleSegmentsMax: 4,
   anglePerSegments: {
     1: { angle: -45 },
     2: { angle: -30 },
