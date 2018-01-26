@@ -17,4 +17,16 @@ export default class BannerCreator {
 
     return banner;
   }
+
+  createAtPosition({ x, y, text, color }) {
+    let banner = this.context.game.add.text(x, y, text, null);
+    banner.font = 'Arial';
+    banner.padding.set(10, 16);
+    banner.fontSize = 40;
+    banner.fill = color;
+    banner.smoothed = true;
+    banner.anchor.setTo(0.5);
+
+    return banner;
+  }
 }
