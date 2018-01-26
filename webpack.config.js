@@ -109,7 +109,7 @@ module.exports = {
 
     /** Template */
     new HtmlWebpackPlugin({
-      title:    'Phaser TypeScript boilerplate project',
+      title:    'Phaser - Brick Breaker',
       template: templatePath
     }),
 
