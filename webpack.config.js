@@ -66,7 +66,7 @@ module.exports = {
     filename: `js/[name]${onlyProd(() => '.[chunkhash]', () => '')}.js`,
     chunkFilename: `js/[name]${onlyProd(() => '.[chunkhash]', () => '')}.chunk.js`,
     sourceMapFilename: '[file].map',
-    publicPath: '/',
+    publicPath: './',
   },
   devtool: onlyDev(() => 'source-map', () => ''),
   resolve: {
