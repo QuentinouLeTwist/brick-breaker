@@ -1,5 +1,7 @@
 # Phaser - Brick Breaker
 
+**The demo :** http://qmousset.be/brick-breaker/
+
 To install this brick breaker, follow the steps below :
 
 - Clone this repository
