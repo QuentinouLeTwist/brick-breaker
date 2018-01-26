@@ -1,8 +1,8 @@
 import {BRICK_COMMON_CONFIG} from './config/bricks';
 
 export const PHASER_CONFIG = {
-  width:           600,
-  height:          400,
+  width:           800,
+  height:          600,
   renderer:        Phaser.AUTO,
   parent:          '',
   resolution:      1,
