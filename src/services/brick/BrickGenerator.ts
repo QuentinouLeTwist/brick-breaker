@@ -30,7 +30,7 @@ export default class BrickGenerator {
   }
 
   private createRowOfBricks(y: number) {
-    let totalBricksWidth = 25;
+    let totalBricksWidth = 120;
     const brickPadding = 10;
     let bricks = [];
     let counter = 0;
