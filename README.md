@@ -9,4 +9,4 @@ To install this brick breaker, you do not have do that much things.
 
 Enjoy! 
 
-PS: Give me your feedback in anytime for anything. :)
+PS: Give me your feedback in anytime for anything. This project is still in development. :)
