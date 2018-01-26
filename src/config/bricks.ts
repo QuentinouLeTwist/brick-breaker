@@ -38,9 +38,9 @@ export const BRICK_COMMON_CONFIG = {
   numberRowsOfBricks: 5,
   firstRowX: 5,
   firstRowY: 5,
-  rowWidth: 600,
+  rowWidth: 700,
   rowHeight: 25,
-  paddingRowTop: 25,
+  paddingRowTop: 50,
   paddingRowBottom: 5,
   sizes: [XXSMALL_BRICK, XSMALL_BRICK, SMALL_BRICK, MEDIUM_BRICK, LARGE_BRICK, XLARGE_BRICK]
 };
