@@ -1,6 +1,12 @@
-# Phaser Typescript Boilerplate
+# Phaser - Brick Breaker
 
+To install this brick breaker, you do not have do that much things.
 
-![Logo][logo-image]
+- Clone this repository
+- cd into your the folder
+- yarn && yarn start
+- Play it at http://localhost:3000
 
-Brick Breaker using Phaser + TypeScript.
+Enjoy! 
+
+PS: Give me your feedback in anytime for anything. :)
