@@ -19,6 +19,7 @@ export default class Game extends Phaser.State {
   private bannerCreator: BannerCreator;
   private objectContainer: GameObjectContainer;
   private score: number = 0;
+  private scoreView: Phaser.Text;
   private rowsOfBricks: Array<Array<{x, y}>> = [];
   private numberOfBricks: number = 0;
   private bricksGroups: Array<Phaser.Group> = [];
@@ -42,11 +43,32 @@ export default class Game extends Phaser.State {
 
     this.addControls();
 
+    this.bannerCreator.setFontSize(15);
+    this.bannerCreator.createAtPosition({
+      x: 35,
+      y: 25,
+      text: 'Score :',
+      color: 'lightblue'
+    });
+    this.displayScore();
+    this.bannerCreator.setFontSize(40);
     this.startingBanner = this.bannerCreator.createCentered({
       text: 'CLICK HERE TO START !',
       color: 'green'
     });
 
+  }
+
+  protected displayScore() {
+    if (this.scoreView instanceof Phaser.Text) {
+      this.scoreView.kill();
+    }
+    this.scoreView = this.bannerCreator.createAtPosition({
+      x: 67,
+      y: 26,
+      text: this.score,
+      color: 'lightblue'
+    });
   }
 
   private addControls() {
@@ -99,6 +121,7 @@ export default class Game extends Phaser.State {
           this.winGame();
         }
         this.score += 15;
+        this.displayScore();
         ball.body.velocity.y += 10;
       }, null, this);
     });
