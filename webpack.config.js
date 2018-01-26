@@ -56,6 +56,10 @@ function only(isIt, fn, fail) {
 const onlyProd = (fn, fail) => only(IS_PRODUCTION, fn, fail);
 const onlyDev = (fn, fail) => only(!IS_PRODUCTION, fn, fail);
 
+let publicPath = '/';
+if (IS_PRODUCTION) {
+  publicPath = './'
+}
 
 module.exports = {
   entry: {
@@ -66,7 +70,7 @@ module.exports = {
     filename: `js/[name]${onlyProd(() => '.[chunkhash]', () => '')}.js`,
     chunkFilename: `js/[name]${onlyProd(() => '.[chunkhash]', () => '')}.chunk.js`,
     sourceMapFilename: '[file].map',
-    publicPath: './',
+    publicPath: publicPath,
   },
   devtool: onlyDev(() => 'source-map', () => ''),
   resolve: {
