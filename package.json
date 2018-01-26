@@ -1,5 +1,5 @@
 {
-  "name": "phaser-typescript-boilerplate",
+  "name": "phaser-brickbreaker",
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
@@ -13,9 +13,8 @@
     "precommit": "npm run lint"
   },
   "author": {
-    "name": "SuperPaintman",
-    "email": "SuperPaintmanDeveloper@gmail.com",
-    "url": "https://superpaintman.com/"
+    "name": "Quentin Mousset",
+    "email": "quentinmousset@gmail.com",
   },
   "files": [
     "LICENSE",
@@ -48,6 +47,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SuperPaintman/phaser-typescript-boilerplate.git"
+    "url": "git+https://github.com/QuentinouLeTwist/brick-breaker.git"
   }
 }
