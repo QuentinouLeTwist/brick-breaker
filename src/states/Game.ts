@@ -14,14 +14,14 @@ import GameObjectContainer from '../objects/ObjectContainer';
 import {RESOURCES_MAP} from '../config/resources';
 
 export default class Game extends Phaser.State {
+  private isStarted: boolean = false;
   private startingBanner: any;
   private bannerCreator: BannerCreator;
+  private objectContainer: GameObjectContainer;
+  private score: number = 0;
   private rowsOfBricks: Array<Array<{x, y}>> = [];
   private numberOfBricks: number = 0;
-
   private bricksGroups: Array<Phaser.Group> = [];
-
-  private objectContainer: GameObjectContainer;
   private cursors: Phaser.CursorKeys;
 
   constructor() {
@@ -40,14 +40,10 @@ export default class Game extends Phaser.State {
     this.game.physics.setBoundsToWorld();
     this.game.physics.arcade.checkCollision.down = false;
 
-    this.createBricks();
-    this.objectContainer.createPaddle(this.game.world.centerX, 360);
-    this.objectContainer.createBall(this.game.world.centerX, this.objectContainer.paddle.sprite.y - 26);
-    this.objectContainer.createRestartBtn(this.game.world.centerX, this.game.world.centerY + 50);
     this.addControls();
 
     this.startingBanner = this.bannerCreator.createCentered({
-      text: 'PRESS SPACE TO START !',
+      text: 'CLICK HERE TO START !',
       color: 'green'
     });
 
@@ -56,11 +52,15 @@ export default class Game extends Phaser.State {
   private addControls() {
     this.cursors = this.game.input.keyboard.createCursorKeys();
     const keySpace = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    this.game.input.onDown.add(this.releaseBall, this);
-    keySpace.onDown.add(this.releaseBall, this);
+    this.game.input.onDown.add(this.startGame, this);
+    keySpace.onDown.add(this.startGame, this);
   }
 
   update() {
+
+    if (!this.isStarted) {
+      return;
+    }
 
     if (this.cursors.left.isDown) {
       this.objectContainer.paddle.sprite.body.velocity.x = -600;
@@ -88,6 +88,8 @@ export default class Game extends Phaser.State {
         ball.body.velocity.x = -velocity;
       }
 
+      ball.body.velocity.y -= 20;
+
     });
 
     this.bricksGroups.forEach((group) => {
@@ -96,15 +98,24 @@ export default class Game extends Phaser.State {
         if (--this.numberOfBricks === 0) {
           this.winGame();
         }
+        this.score += 15;
+        ball.body.velocity.y += 10;
       }, null, this);
     });
 
   }
 
-  private releaseBall() {
-    this.objectContainer.ball.release(() => {
-      this.startingBanner.kill();
-    });
+  private startGame() {
+    if (!this.isStarted) {
+      this.createBricks();
+      this.objectContainer.createPaddle(this.game.world.centerX, this.game.world.height - 20);
+      this.objectContainer.createBall(this.game.world.centerX, this.objectContainer.paddle.sprite.y - 26);
+      this.objectContainer.createRestartBtn(this.game.world.centerX, this.game.world.centerY + 50);
+      this.objectContainer.ball.release(() => {
+        this.startingBanner.kill();
+        this.isStarted = true;
+      });
+    }
   }
 
   private createBricks() {
