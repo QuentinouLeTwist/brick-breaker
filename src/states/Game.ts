@@ -109,7 +109,9 @@ export default class Game extends Phaser.State {
         ball.body.velocity.x = -velocity;
       }
 
-      ball.body.velocity.y -= 20;
+      if (ball.body.velocity.y > -750) {
+        ball.body.velocity.y -= 10;
+      }
 
     });
 
