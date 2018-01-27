@@ -43,32 +43,31 @@ export default class Game extends Phaser.State {
 
     this.addControls();
 
-    this.bannerCreator.setFontSize(15);
-    this.bannerCreator.createAtPosition({
-      x: 35,
-      y: 25,
-      text: 'Score :',
-      color: 'lightblue'
-    });
+    this.bannerCreator.createAtPosition(35, 25, 'Score :', 'lightblue', 'Arial', 15);
     this.displayScore();
-    this.bannerCreator.setFontSize(40);
-    this.startingBanner = this.bannerCreator.createCentered({
-      text: 'CLICK HERE TO START !',
-      color: 'green'
-    });
-
+    this.startingBanner = this.bannerCreator.createCentered('CLICK HERE TO START !', 'lightgreen', 'Arial', 40);
   }
 
   protected displayScore() {
     if (this.scoreView instanceof Phaser.Text) {
       this.scoreView.kill();
     }
-    this.scoreView = this.bannerCreator.createAtPosition({
-      x: 67,
-      y: 26,
-      text: this.score,
-      color: 'lightblue'
-    });
+
+    let scoreViewX;
+
+    console.log(this.score);
+
+    if (this.score === 0) {
+      scoreViewX = 67;
+    } else if (this.score > 99) {
+        scoreViewX = 78;
+    } else if (this.score > 9) {
+      scoreViewX = 72;
+    } else {
+      scoreViewX = 95;
+    }
+
+    this.scoreView = this.bannerCreator.createAtPosition(scoreViewX, 26, this.score.toString(), 'lightblue', 'Arial', 15);
   }
 
   private addControls() {
@@ -162,18 +161,12 @@ export default class Game extends Phaser.State {
 
   private winGame() {
     this.killAll();
-    this.bannerCreator.createCentered({
-      text: 'YOU WIN !',
-      color: '#07acbf'
-    });
+    this.bannerCreator.createCentered('YOU WIN !', 'orange', 'Arial', 40);
   }
 
   private gameOver() {
     this.killAll();
-    this.bannerCreator.createCentered({
-      text: 'GAME OVER!',
-      color: 'red'
-    });
+    this.bannerCreator.createCentered('GAME OVER !', 'red', 'Arial', 40);
   }
 
   private killAll() {
