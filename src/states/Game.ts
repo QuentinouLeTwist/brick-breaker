@@ -7,7 +7,6 @@ import * as Config from '../constants';
 import BrickGenerator from '../services/brick/BrickGenerator';
 import PhaserResourceLoader from '../services/loader/PhaserResourceLoader';
 import {PADDLE_CONFIG} from '../config/paddle';
-import { BALL_CONFIG } from '../config/ball';
 import BannerCreator from '../services/BannerCreator';
 import ObjectFactory from '../objects/ObjectFactory';
 import GameObjectContainer from '../objects/ObjectContainer';
@@ -19,6 +18,7 @@ export default class Game extends Phaser.State {
   private bannerCreator: BannerCreator;
   private objectContainer: GameObjectContainer;
   private score: number = 0;
+  private scoreView: Phaser.Text;
   private rowsOfBricks: Array<Array<{x, y}>> = [];
   private numberOfBricks: number = 0;
   private bricksGroups: Array<Phaser.Group> = [];
@@ -42,11 +42,29 @@ export default class Game extends Phaser.State {
 
     this.addControls();
 
-    this.startingBanner = this.bannerCreator.createCentered({
-      text: 'CLICK HERE TO START !',
-      color: 'green'
-    });
+    this.bannerCreator.createAtPosition(35, 25, 'Score :', 'lightblue', 'Arial', 15);
+    this.displayScore();
+    this.startingBanner = this.bannerCreator.createCentered('CLICK HERE TO START !', 'lightgreen', 'Arial', 40);
+  }
 
+  protected displayScore() {
+    if (this.scoreView instanceof Phaser.Text) {
+      this.scoreView.kill();
+    }
+
+    let scoreViewX;
+
+    if (this.score === 0) {
+      scoreViewX = 67;
+    } else if (this.score > 99) {
+        scoreViewX = 78;
+    } else if (this.score > 9) {
+      scoreViewX = 72;
+    } else {
+      scoreViewX = 95;
+    }
+
+    this.scoreView = this.bannerCreator.createAtPosition(scoreViewX, 26, this.score.toString(), 'lightblue', 'Arial', 15);
   }
 
   private addControls() {
@@ -63,9 +81,9 @@ export default class Game extends Phaser.State {
     }
 
     if (this.cursors.left.isDown) {
-      this.objectContainer.paddle.sprite.body.velocity.x = -600;
+      this.objectContainer.paddle.sprite.body.velocity.x = -1000;
     } else if (this.cursors.right.isDown) {
-      this.objectContainer.paddle.sprite.body.velocity.x = 600;
+      this.objectContainer.paddle.sprite.body.velocity.x = 1000;
     } else {
       this.objectContainer.paddle.sprite.body.velocity.x = 0;
     }
@@ -79,16 +97,23 @@ export default class Game extends Phaser.State {
         return;
       }
 
-      let paddleSegmentHit = Math.floor((ball.x - paddle.previousPosition.x) / PADDLE_CONFIG.paddleSegmentWidth);
-      const velocity = (BALL_CONFIG.velocityX + (paddleSegmentHit * PADDLE_CONFIG.paddleSegmentAngle));
+      const diffXBetweenElements = ball.x - paddle.x;
+      const paddleSegmentHit = Math.floor(diffXBetweenElements / PADDLE_CONFIG.paddleSegmentWidth);
 
-      if (paddleSegmentHit >= (PADDLE_CONFIG.paddleSegmentsMax - 1)) {
-        ball.body.velocity.x = velocity;
-      } else if (paddleSegmentHit <= -(PADDLE_CONFIG.paddleSegmentsMax - 1)) {
-        ball.body.velocity.x = -velocity;
+      if (paddleSegmentHit === 0) {
+        ball.body.velocity.x =  paddle.x - ball.x;
+      } else {
+        const newVelocity = (20 / paddleSegmentHit) * diffXBetweenElements;
+        if (paddleSegmentHit >= (PADDLE_CONFIG.paddleSegmentsMax - 1)) {
+          ball.body.velocity.x = newVelocity;
+        } else if (paddleSegmentHit <= -(PADDLE_CONFIG.paddleSegmentsMax - 1)) {
+          ball.body.velocity.x = -newVelocity;
+        }
       }
 
-      ball.body.velocity.y -= 20;
+      if (ball.body.velocity.y > -750) {
+        ball.body.velocity.y -= 15;
+      }
 
     });
 
@@ -99,6 +124,7 @@ export default class Game extends Phaser.State {
           this.winGame();
         }
         this.score += 15;
+        this.displayScore();
         ball.body.velocity.y += 10;
       }, null, this);
     });
@@ -139,18 +165,12 @@ export default class Game extends Phaser.State {
 
   private winGame() {
     this.killAll();
-    this.bannerCreator.createCentered({
-      text: 'YOU WIN !',
-      color: '#07acbf'
-    });
+    this.bannerCreator.createCentered('YOU WIN !', 'orange', 'Arial', 40);
   }
 
   private gameOver() {
     this.killAll();
-    this.bannerCreator.createCentered({
-      text: 'GAME OVER!',
-      color: 'red'
-    });
+    this.bannerCreator.createCentered('GAME OVER !', 'red', 'Arial', 40);
   }
 
   private killAll() {
