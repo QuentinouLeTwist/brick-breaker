@@ -1,5 +1,7 @@
 # Phaser - Brick Breaker
 
+**Typscript powered**, **Phaser engined**, this is a simple and opensource **brick breaker**. I hope It will be a good example for any **phaser-typescript** dev-beginners. Take it and do whatever you want with it, play with it, in terms of **game** or **code** ! :) 
+
 **The demo :** http://qmousset.be/brick-breaker/ *(develop branch version)*
 
 **Workboard :** https://tree.taiga.io/project/quentinou-brick-breaker/kanban
