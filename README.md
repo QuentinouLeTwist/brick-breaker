@@ -1,6 +1,7 @@
 # Phaser - Brick Breaker
 
 **The demo :** http://qmousset.be/brick-breaker/ *(develop branch version)*
+
 **Workboard :** https://tree.taiga.io/project/quentinou-brick-breaker/kanban
 
 To install this brick breaker, follow the steps below :
