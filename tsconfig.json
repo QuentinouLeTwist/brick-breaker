@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es6"],
     "skipLibCheck": true,
     "module": "commonjs",
     "moduleResolution": "node",
