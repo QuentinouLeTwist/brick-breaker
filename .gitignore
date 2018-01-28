@@ -9,3 +9,5 @@ dist/
 
 # Idea
 /.idea
+
+npm-debug.log
