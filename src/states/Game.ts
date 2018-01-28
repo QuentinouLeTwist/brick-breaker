@@ -7,7 +7,6 @@ import * as Config from '../constants';
 import BrickGenerator from '../services/brick/BrickGenerator';
 import PhaserResourceLoader from '../services/loader/PhaserResourceLoader';
 import {PADDLE_CONFIG} from '../config/paddle';
-import { BALL_CONFIG } from '../config/ball';
 import BannerCreator from '../services/BannerCreator';
 import ObjectFactory from '../objects/ObjectFactory';
 import GameObjectContainer from '../objects/ObjectContainer';
@@ -55,8 +54,6 @@ export default class Game extends Phaser.State {
 
     let scoreViewX;
 
-    console.log(this.score);
-
     if (this.score === 0) {
       scoreViewX = 67;
     } else if (this.score > 99) {
@@ -84,9 +81,9 @@ export default class Game extends Phaser.State {
     }
 
     if (this.cursors.left.isDown) {
-      this.objectContainer.paddle.sprite.body.velocity.x = -600;
+      this.objectContainer.paddle.sprite.body.velocity.x = -1000;
     } else if (this.cursors.right.isDown) {
-      this.objectContainer.paddle.sprite.body.velocity.x = 600;
+      this.objectContainer.paddle.sprite.body.velocity.x = 1000;
     } else {
       this.objectContainer.paddle.sprite.body.velocity.x = 0;
     }
@@ -100,17 +97,22 @@ export default class Game extends Phaser.State {
         return;
       }
 
-      let paddleSegmentHit = Math.floor((ball.x - paddle.previousPosition.x) / PADDLE_CONFIG.paddleSegmentWidth);
-      const velocity = (BALL_CONFIG.velocityX + (paddleSegmentHit * PADDLE_CONFIG.paddleSegmentAngle));
+      const diffXBetweenElements = ball.x - paddle.x;
+      const paddleSegmentHit = Math.floor(diffXBetweenElements / PADDLE_CONFIG.paddleSegmentWidth);
 
-      if (paddleSegmentHit >= (PADDLE_CONFIG.paddleSegmentsMax - 1)) {
-        ball.body.velocity.x = velocity;
-      } else if (paddleSegmentHit <= -(PADDLE_CONFIG.paddleSegmentsMax - 1)) {
-        ball.body.velocity.x = -velocity;
+      if (paddleSegmentHit === 0) {
+        ball.body.velocity.x =  paddle.x - ball.x;
+      } else {
+        const newVelocity = (20 / paddleSegmentHit) * diffXBetweenElements;
+        if (paddleSegmentHit >= (PADDLE_CONFIG.paddleSegmentsMax - 1)) {
+          ball.body.velocity.x = newVelocity;
+        } else if (paddleSegmentHit <= -(PADDLE_CONFIG.paddleSegmentsMax - 1)) {
+          ball.body.velocity.x = -newVelocity;
+        }
       }
 
       if (ball.body.velocity.y > -750) {
-        ball.body.velocity.y -= 10;
+        ball.body.velocity.y -= 15;
       }
 
     });
